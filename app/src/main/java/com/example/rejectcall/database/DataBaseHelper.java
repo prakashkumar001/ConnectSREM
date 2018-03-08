@@ -130,7 +130,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 contact.setIsSync(cursor.getString(5));
 
                 contact.setApi_token(cursor.getString(6));
-                contact.setMessage(cursor.getString(7));
+
+                contact.setMessage(replaceString(cursor.getString(7)));
                 contact.setApi_ringcount(cursor.getString(8));
                 // Adding contact to list
 
@@ -269,5 +270,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         return listdata;
     }
+    String replaceString(String string) {
+
+        string = string.replaceAll("[\"]", "^^");
+        string = string.replaceAll("[\']", "^");
+
+
+        return string;
+        }
+
+
 
 }
